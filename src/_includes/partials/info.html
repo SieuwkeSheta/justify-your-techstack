@@ -1,0 +1,10 @@
+{% for info in infos%}
+<section class="info">
+    {% if info.image %}
+        <img src="{{info.image}}" alt="" width="200">
+    {% endif %}
+    
+    <h2>{{info.title}}</h2>
+    <p>{{info.text }}</p>
+</section>
+{% endfor %}
