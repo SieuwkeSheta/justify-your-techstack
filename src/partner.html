@@ -1,0 +1,17 @@
+---
+pagination:
+  data: websites
+  size: 1
+  alias: website
+permalink: "/{{website.slug}}.html"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <section class="partner">
+    <h1>Dit is de {{ website.title }} partner pagina.</h1>
+    <p>Er staat hier nog geen content. Dit is een testpagina om te kijken of de URL-slug werkt.</p>
+    <a href="/">Terug naar de homepagina</a>
+  </section>
+{% endblock %}

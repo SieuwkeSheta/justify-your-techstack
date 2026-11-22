@@ -5,41 +5,65 @@
 }
 
 html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root {
     --primary-color: #b9005f;
+    --primary-color-light: #f1ccdf;
     --blue-color: #0084c8;
     --green-color: #7a8f0b;
     --dark-pink: #470026;
     --light-pink: #f9edf3;
     --white: #ffffff;
+
     --padding: 2em;
-    --button-padding: .75rem 2rem;
-    --input-padding: .75rem 1rem;
+    --button-padding: 0.75rem 2rem;
+    --input-padding: 0.75rem 1rem;
     --border-radius: 10px;
+    --border-radius-small: 5px;
 }
 
 body {
     container: body / inline-size;
 }
 
+main {
+    container: main / inline-size;
+    margin: 0 5%;
+    padding-bottom: 2em;
+}
+
+ul {
+    list-style: none;
+}
+
+button,
+select,
+input,
+textarea {
+    font-family: inherit;
+}
+
 header {
-    background: var(--primary-color);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 3em;
     padding: 1.5em 5%;
+    background: var(--primary-color);
 
     a {
         display: inline-flex;
         align-items: center;
         gap: 1em;
+        padding: 0.5em;
+        border-bottom: 2px solid transparent;
+        background: var(--primary-color);
         color: var(--white);
-        text-decoration: none;
         font-weight: 500;
+        text-decoration: none;
+        transition: 0.1s;
 
         svg {
             fill: none;
@@ -48,22 +72,169 @@ header {
         @container body (min-width: 800px) {
             &:last-child {
                 margin-left: auto;
-            } 
+            }
         }
 
         @media (pointer: fine) {
-            &:hover {
-                outline: 2px solid var(--white);
-                outline-offset: 0.5em;
+            &:hover:not(:first-of-type) {
                 border-radius: var(--border-radius);
+                filter: brightness(110%);
             }
         }
     }
 }
 
-main {
+.subheader {
+    display: grid;
+    gap: 0.5em;
     margin: 5%;
-    container: main / inline-size;
+    font-weight: 700;
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    button,
+    select {
+        padding: 0.5em;
+        border: none;
+        border-radius: var(--border-radius-small);
+        background: var(--primary-color-light);
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        width: fit-content;
+    }
+
+    .add-partner button {
+        background: var(--primary-color);
+        border-radius: var(--border-radius);
+        color: var(--white);
+
+        img {
+            width: 2em;
+            height: auto;
+        }
+    }
+
+    input[type="search"] {
+        padding: 0.5em;
+        border: 2px solid var(--dark-pink);
+        border-radius: var(--border-radius);
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+        opacity: 0.3;
+    }
+
+    @container body (min-width: 700px) {
+        grid-template-columns: 1fr auto auto;
+        grid-template-areas:
+            ".      addpartner search"
+            "filter sort       sort";
+
+        .add-partner {
+            grid-area: addpartner;
+        }
+
+        search {
+            grid-area: search;
+            align-self: center;
+        }
+
+        .filter {
+            grid-area: filter;
+        }
+
+        .sort {
+            grid-area: sort;
+            justify-self: end;
+        }
+    }
+}
+
+.card-list {
+    display: grid;
+    gap: 1.5em;
+    opacity: 0.8;
+
+    .card a {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 1em;
+        padding: 1em;
+        border-radius: var(--border-radius);
+        background: var(--light-pink);
+        text-decoration: none;
+
+        > img {
+            grid-row: 1 / span 3;
+            width: clamp(3em, 20vw, 8em);
+            height: auto;
+        }
+
+        > :not(img) {
+            grid-column: 2;
+        }
+
+        h2 {
+            color: var(--dark-pink);
+            font-size: clamp(1.5rem, 5dvw, 2.25rem);
+        }
+
+        label {
+            color: var(--dark-pink);
+        }
+
+        progress {
+            width: 80%;
+            appearance: none;
+            border: none;
+            border-radius: var(--border-radius);
+            background: var(--white);
+
+            &::-webkit-progress-bar {
+                border-radius: var(--border-radius);
+                background: var(--white);
+            }
+        }
+
+        ul {
+            display: flex;
+            align-self: flex-end;
+            gap: 1rem;
+            margin-left: auto;
+
+            button {
+                border: none;
+                background: none;
+
+                @media (pointer: fine) {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            img {
+                width: 2rem;
+                height: auto;
+            }
+        }
+    }
+
+    @container main (min-width: 930px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 3em;
+        margin: 0 1em;
+    }
 }
 
 .info {
@@ -132,8 +303,8 @@ main {
 .contact {
     display: grid;
     max-width: clamp(25em, 60dvw, 35em);
-    color: var(--dark-pink);
     margin-inline: auto;
+    color: var(--dark-pink);
 
     h2 {
         font-size: 2rem;
@@ -145,14 +316,14 @@ main {
         padding-top: 1.5rem;
 
         button {
-            padding: var(--button-padding);
             width: fit-content;
-            background: var(--primary-color);
-            color: var(--white);
+            margin-top: 2em;
+            padding: var(--button-padding);
             border: none;
             border-radius: var(--border-radius);
+            background: var(--primary-color);
+            color: var(--white);
             font-size: 1em;
-            margin-top: 2em;
 
             @media (pointer: fine) {
                 &:hover {
@@ -169,18 +340,28 @@ main {
         font-size: 1.2rem;
         font-weight: 700;
 
-        input, textarea {
-            background: var(--light-pink);
-            border: none;
+        input,
+        textarea {
             padding: var(--input-padding);
-            font-size: 1rem;
+            border: none;
             border-radius: var(--border-radius);
-            font-family: inherit;
+            background: var(--light-pink);
+            font-size: 1rem;
         }
 
         textarea {
             min-height: 5em;
             resize: vertical;
         }
+    }
+}
+
+.partner {
+    margin: 0 1em;
+    padding-top: 5%;
+
+    a {
+        display: inline-block;
+        padding-top: 2em;
     }
 }
