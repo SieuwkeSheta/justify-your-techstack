@@ -1,0 +1,76 @@
+.card-list {
+    display: grid;
+    gap: 1.5em;
+    opacity: 0.8;
+
+    .card a {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 1em;
+        padding: 1em;
+        border-radius: var(--border-radius);
+        background: var(--light-pink);
+        text-decoration: none;
+
+        > img {
+            grid-row: 1 / span 3;
+            width: clamp(3em, 20vw, 8em);
+            height: auto;
+        }
+
+        > :not(img) {
+            grid-column: 2;
+        }
+
+        h2 {
+            color: var(--dark-pink);
+            font-size: clamp(1.5rem, 5dvw, 2.25rem);
+        }
+
+        label {
+            color: var(--dark-pink);
+        }
+
+        progress {
+            width: 80%;
+            appearance: none;
+            border: none;
+            border-radius: var(--border-radius);
+            background: var(--white);
+
+            &::-webkit-progress-bar {
+                border-radius: var(--border-radius);
+                background: var(--white);
+            }
+        }
+
+        ul {
+            display: flex;
+            align-self: flex-end;
+            gap: 1rem;
+            margin-left: auto;
+
+            button {
+                border: none;
+                background: none;
+
+                @media (pointer: fine) {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            img {
+                width: 2rem;
+                height: auto;
+            }
+        }
+    }
+
+    @container main (min-width: 930px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 3em;
+        margin: 0 1em;
+    }
+}

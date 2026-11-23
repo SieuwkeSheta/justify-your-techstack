@@ -1,0 +1,55 @@
+.contact {
+    display: grid;
+    max-width: clamp(25em, 60dvw, 35em);
+    margin-inline: auto;
+    color: var(--dark-pink);
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    form {
+        display: grid;
+        gap: 1em;
+        padding-top: 1.5rem;
+
+        button {
+            width: fit-content;
+            margin-top: 2em;
+            padding: var(--button-padding);
+            border: none;
+            border-radius: var(--border-radius);
+            background: var(--primary-color);
+            color: var(--white);
+            font-size: 1em;
+
+            @media (pointer: fine) {
+                &:hover {
+                    filter: brightness(110%);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    label {
+        display: grid;
+        gap: 0.5em;
+        font-size: 1.2rem;
+        font-weight: 700;
+
+        input,
+        textarea {
+            padding: var(--input-padding);
+            border: none;
+            border-radius: var(--border-radius);
+            background: var(--light-pink);
+            font-size: 1rem;
+        }
+
+        textarea {
+            min-height: 5em;
+            resize: vertical;
+        }
+    }
+}

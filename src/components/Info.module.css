@@ -1,0 +1,62 @@
+.info {
+    container: info-section / inline-size;
+    display: grid;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: var(--padding);
+    padding: 4em var(--padding);
+    color: var(--dark-pink);
+
+    &:first-child {
+        padding: var(--padding);
+    }
+
+    &:nth-of-type(2) {
+        background: var(--green-color);
+    }
+
+    &:nth-of-type(4) {
+        background: var(--blue-color);
+    }
+
+    &:is(:nth-of-type(2), :nth-of-type(4)) {
+        color: var(--white);
+    }
+
+    img {
+        justify-self: center;
+        width: clamp(10em, 25dvw, 14em);
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p {
+        line-height: 1.5;
+    }
+
+    @container main (min-width: 600px) {
+        margin-bottom: 4em;
+
+        &:has(img) {
+            grid-template-columns: 1fr 2fr;
+            align-content: center;
+
+            img {
+                grid-column: 1;
+                grid-row: 1 / span 2;
+            }
+
+            :is(h2, p) {
+                grid-column: 2;
+            }
+        }
+    }
+
+    @container info-section (min-width: 600px) {
+        p {
+            max-width: 90ch;
+        }
+    }
+}

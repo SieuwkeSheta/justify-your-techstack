@@ -1,0 +1,34 @@
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3em;
+    padding: 1.5em 5%;
+    background: var(--primary-color);
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        gap: 1em;
+        padding: 0.5em;
+        border-bottom: 2px solid transparent;
+        background: var(--primary-color);
+        color: var(--white);
+        font-weight: 500;
+        text-decoration: none;
+        transition: 0.1s;
+
+        @container body (min-width: 800px) {
+            &:last-child {
+                margin-left: auto;
+            }
+        }
+
+        @media (pointer: fine) {
+            &:hover:not(:first-of-type) {
+                border-radius: var(--border-radius);
+                filter: brightness(110%);
+            }
+        }
+    }
+}

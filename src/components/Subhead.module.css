@@ -1,0 +1,75 @@
+.subheader {
+    display: grid;
+    gap: 0.5em;
+    margin: 5%;
+    font-weight: 700;
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    button,
+    select {
+        padding: 0.5em;
+        border: none;
+        border-radius: var(--border-radius-small);
+        background: var(--primary-color-light);
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        width: fit-content;
+    }
+
+    .add-partner button {
+        background: var(--primary-color);
+        border-radius: var(--border-radius);
+        color: var(--white);
+
+        img {
+            width: 2em;
+            height: auto;
+        }
+    }
+
+    input[type="search"] {
+        padding: 0.5em;
+        border: 2px solid var(--dark-pink);
+        border-radius: var(--border-radius);
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+        opacity: 0.3;
+    }
+
+    @container body (min-width: 700px) {
+        grid-template-columns: 1fr auto auto;
+        grid-template-areas:
+            ".      addpartner search"
+            "filter sort       sort";
+
+        .add-partner {
+            grid-area: addpartner;
+        }
+
+        search {
+            grid-area: search;
+            align-self: center;
+        }
+
+        .filter {
+            grid-area: filter;
+        }
+
+        .sort {
+            grid-area: sort;
+            justify-self: end;
+        }
+    }
+}

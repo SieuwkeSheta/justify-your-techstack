@@ -1,0 +1,9 @@
+.partner {
+    margin: 0 1em;
+    padding-top: 5%;
+
+    a {
+        display: inline-block;
+        padding-top: 2em;
+    }
+}
